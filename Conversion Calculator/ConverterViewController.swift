@@ -9,6 +9,11 @@
 import UIKit
 
 class ConverterViewController: UIViewController {
+    
+    var dot = false
+    var choice: Int = 1
+    var NewNum: String?
+    var CurNum: String = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,8 +26,18 @@ class ConverterViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBOutlet weak var outputDisplay: UITextField!
     
+    @IBAction func digits(_ sender: UIButton) {
+        
+    }
+    
+    @IBAction func changers(_ sender: UIButton) {
+        
+    }
+    
+    var InputNum = ["\u{00B0}F","\u{00B0}C","mi","km"]
+    
+    @IBOutlet weak var outputDisplay: UITextField!
     @IBOutlet weak var inputDisplay: UITextField!
 
     /*
