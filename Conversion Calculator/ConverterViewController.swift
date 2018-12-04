@@ -14,7 +14,34 @@ class ConverterViewController: UIViewController {
     var choice: Int = 1
     var NewNum: String?
     var CurNum: String = ""
+    
+    
+    // Start conversion functions
+    func CelsToFahr(_ celc: String) -> String {
+        let convertToFahr: Double = Double(celc)!
+        let cTf = (convertToFahr * (9/5)) + 32
+        return String(cTf) + "°F"
+    }
+    
+    func fahrToCelc (_ fahr: String) -> String {
+        let convertToCelc: Double = Double(fahr)!
+        let fTc = (convertToCelc - 32) * (5/9)
+        return String(fTc) + "°C"
+    }
 
+    func mileToKilo(_ mile: String) -> String {
+        let convertMileToKilo: Double = Double(mile)!
+        let mTk = convertMileToKilo * 1.60934
+        return String(mTk)
+    }
+    
+    func kiloToMile (_ kilo: String) -> String {
+        let convertKiloToMile: Double = Double(kilo)!
+        let kTm = convertKiloToMile * 0.621371
+        return String(kTm)
+    }
+    //End conversion functions
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
