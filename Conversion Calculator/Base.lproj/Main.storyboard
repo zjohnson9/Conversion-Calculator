@@ -61,7 +61,7 @@
                                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                         </state>
                                                         <connections>
-                                                            <action selector="changers:" destination="BYZ-38-t0r" eventType="touchUpInside" id="3p3-k9-5ZA"/>
+                                                            <action selector="clear:" destination="BYZ-38-t0r" eventType="touchUpInside" id="MNO-sZ-dXv"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZkQ-2Q-k2E">
@@ -72,7 +72,7 @@
                                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                         </state>
                                                         <connections>
-                                                            <action selector="changers:" destination="BYZ-38-t0r" eventType="touchUpInside" id="IjG-zp-0Oi"/>
+                                                            <action selector="positiveOrNegative:" destination="BYZ-38-t0r" eventType="touchUpInside" id="j2f-fD-kGR"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6By-Mc-e8m">
@@ -240,7 +240,7 @@
                                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                         </state>
                                                         <connections>
-                                                            <action selector="changers:" destination="BYZ-38-t0r" eventType="touchUpInside" id="tyA-cS-FDp"/>
+                                                            <action selector="dicimalPoint:" destination="BYZ-38-t0r" eventType="touchUpInside" id="IBp-1H-0hw"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>

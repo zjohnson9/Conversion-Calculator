@@ -58,9 +58,37 @@ class ConverterViewController: UIViewController {
         
     }
     
-    @IBAction func changers(_ sender: UIButton) {
-        
+    
+    @IBAction func positiveOrNegative(_ sender: UIButton) {
+        if CurNum.contains("-") {
+                CurNum.remove(at: CurNum.startIndex)
+        } else {
+            CurNum = "-" + CurNum
+        }
     }
+    
+    
+    @IBAction func dicimalPoint(_ sender: UIButton) {
+        if CurNum.contains(".") {
+            return
+        }
+        
+        if CurNum.isEmpty {
+            CurNum += "0."
+        }
+        else {
+            CurNum += "."
+        }
+    }
+    
+    
+    @IBAction func clear(_ sender: UIButton) {
+        self.CurNum.removeAll()
+        self.NewNum?.removeAll()
+        outputDisplay.text = ""
+        inputDisplay.text = ""
+    }
+    
     
     var InputNum = ["\u{00B0}F","\u{00B0}C","mi","km"]
     
