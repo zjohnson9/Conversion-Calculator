@@ -32,13 +32,13 @@ class ConverterViewController: UIViewController {
     func mileToKilo(_ mile: String) -> String {
         let convertMileToKilo: Double = Double(mile)!
         let mTk = convertMileToKilo * 1.60934
-        return String(mTk)
+        return String(mTk) + "km"
     }
     
     func kiloToMile (_ kilo: String) -> String {
         let convertKiloToMile: Double = Double(kilo)!
         let kTm = convertKiloToMile * 0.621371
-        return String(kTm)
+        return String(kTm) + "mi"
     }
     //End conversion functions
     
