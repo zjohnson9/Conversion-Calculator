@@ -278,7 +278,6 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
-                        <outlet property="clickButton" destination="6By-Mc-e8m" id="V6x-Fj-SrF"/>
                         <outlet property="inputDisplay" destination="bgI-te-EnY" id="73G-MP-0ed"/>
                         <outlet property="outputDisplay" destination="XQn-EO-IeP" id="eBj-bh-Fso"/>
                     </connections>
