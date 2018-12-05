@@ -16,31 +16,7 @@ class ConverterViewController: UIViewController {
     var CurNum: String = ""
     
     
-    // Start conversion functions
-    func CelsToFahr(_ celc: String) -> String {
-        let convertToFahr: Double = Double(celc)!
-        let cTf = (convertToFahr * (9/5)) + 32
-        return String(cTf) + "°F"
-    }
     
-    func fahrToCelc (_ fahr: String) -> String {
-        let convertToCelc: Double = Double(fahr)!
-        let fTc = (convertToCelc - 32) * (5/9)
-        return String(fTc) + "°C"
-    }
-
-    func mileToKilo(_ mile: String) -> String {
-        let convertMileToKilo: Double = Double(mile)!
-        let mTk = convertMileToKilo * 1.60934
-        return String(mTk) + "km"
-    }
-    
-    func kiloToMile (_ kilo: String) -> String {
-        let convertKiloToMile: Double = Double(kilo)!
-        let kTm = convertKiloToMile * 0.621371
-        return String(kTm) + "mi"
-    }
-    //End conversion functions
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,7 +31,25 @@ class ConverterViewController: UIViewController {
     
     
     @IBAction func digits(_ sender: UIButton) {
+        NewNum = CurNum + String(sender.tag-1)
+        CurNum = NewNum!
+        inputDisplay.text = NewNum! + " " + inputTag[choice - 1]
         
+        switch choice {
+        case 1:
+            outputDisplay.text = CelsToFahr(CurNum)
+        
+        case 2:
+            outputDisplay.text = fahrToCelc(CurNum)
+        
+        case 3:
+            outputDisplay.text = kiloToMile(CurNum)
+        
+        case 4:
+            outputDisplay.text = mileToKilo(CurNum)
+        
+        default: outputDisplay.text = fahrToCelc(CurNum)
+        }
     }
     
     
@@ -90,10 +84,80 @@ class ConverterViewController: UIViewController {
     }
     
     
-    var InputNum = ["\u{00B0}F","\u{00B0}C","mi","km"]
+    var inputTag = ["\u{00B0}F","\u{00B0}C","mi","km"]
     
     @IBOutlet weak var outputDisplay: UITextField!
     @IBOutlet weak var inputDisplay: UITextField!
+    
+    // Start conversion functions
+    func CelsToFahr(_ celc: String) -> String {
+        let convertToFahr: Double = Double(celc)!
+        let cTf = (convertToFahr - 32) * (5/9)
+        return String(cTf) + "°C"
+    }
+    
+    func fahrToCelc (_ fahr: String) -> String {
+        let convertToCelc: Double = Double(fahr)!
+        let fTc = (convertToCelc * (9/5)) + 32
+        return String(fTc) + "°F"
+    }
+    
+    func mileToKilo(_ mile: String) -> String {
+        let convertMileToKilo: Double = Double(mile)!
+        let mTk = convertMileToKilo * 0.621371
+        return String(mTk) + "mi"
+    }
+    
+    func kiloToMile (_ kilo: String) -> String {
+        let convertKiloToMile: Double = Double(kilo)!
+        let kTm = convertKiloToMile / 0.621371
+        return String(kTm) + "km"
+    }
+    //End conversion functions
+    
+    
+    @IBAction func convert(_ sender: Any) {
+        let alert = UIAlertController(title: "Choose Converter", message: "", preferredStyle: UIAlertControllerStyle.actionSheet)
+        alert.addAction(UIAlertAction(title: "fahrenheit to celcius", style: UIAlertActionStyle.default, handler: {
+            (alertAction) -> Void in
+            self.choice = 1
+            self.CurNum = ""
+            self.inputDisplay.text = ""
+            self.dot = false
+            self.outputDisplay.text = ""
+        }))
+        
+        alert.addAction(UIAlertAction(title: "celcius to fahrenheit", style: UIAlertActionStyle.default, handler: {
+            (alertAction) -> Void in
+            self.choice = 2
+            self.inputDisplay.text = ""
+            self.CurNum = ""
+            self.dot = false
+            self.outputDisplay.text = ""
+        }))
+        alert.addAction(UIAlertAction(title: "miles to kilometers", style: UIAlertActionStyle.default, handler: {
+            (alertAction) -> Void in
+            self.choice = 3
+            self.inputDisplay.text = ""
+            self.CurNum = ""
+            self.dot = false
+            self.outputDisplay.text = ""
+            
+        }))
+        alert.addAction(UIAlertAction(title: "kilometers to miles", style: UIAlertActionStyle.default, handler: {
+            (alertAction) -> Void in
+            self.choice = 4
+            self.inputDisplay.text = ""
+            self.CurNum = ""
+            self.dot = false
+            self.outputDisplay.text = ""
+        }))
+        
+        
+        self.present(alert, animated: true, completion: nil)
+        
+    }
+    
 
     /*
     // MARK: - Navigation
@@ -107,6 +171,4 @@ class ConverterViewController: UIViewController {
 
     //MARK: ACTIONS
     
-    @IBAction func clickButton(_ sender: Any) {
-    }
 }
