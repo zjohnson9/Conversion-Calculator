@@ -10,11 +10,8 @@ import UIKit
 
 class ConverterViewController: UIViewController {
     
-    var dot = false
+    //converter choice variable
     var choice: Int = 1
-    var NewNum: String?
-    var CurNum: String = ""
-    
     
     
     
@@ -29,63 +26,56 @@ class ConverterViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    
-    @IBAction func digits(_ sender: UIButton) {
-        NewNum = CurNum + String(sender.tag-1)
-        CurNum = NewNum!
-        inputDisplay.text = NewNum! + " " + inputTag[choice - 1]
+    //digit function. Press numbers to add to number
+    @IBAction func numberPressed(_ sender: UIButton) {
+        inputDisplay.text = inputDisplay.text! + String(sender.tag-1)
         
         switch choice {
         case 1:
-            outputDisplay.text = CelsToFahr(CurNum)
-        
+            outputDisplay.text = CelsToFahr(inputDisplay.text!)
         case 2:
-            outputDisplay.text = fahrToCelc(CurNum)
-        
+            outputDisplay.text = fahrToCelc(inputDisplay.text!)
         case 3:
-            outputDisplay.text = kiloToMile(CurNum)
-        
+            outputDisplay.text = kiloToMile(inputDisplay.text!)
         case 4:
-            outputDisplay.text = mileToKilo(CurNum)
+            outputDisplay.text = mileToKilo(inputDisplay.text!)
+        default:
+            outputDisplay.text = CelsToFahr(inputDisplay.text!)
+        }
         
-        default: outputDisplay.text = fahrToCelc(CurNum)
-        }
     }
     
-    
+    //make input number positive or negative. Must enter another number for it to calculate
     @IBAction func positiveOrNegative(_ sender: UIButton) {
-        if CurNum.contains("-") {
-                CurNum.remove(at: CurNum.startIndex)
+        if (inputDisplay.text?.contains("-"))! {
+            inputDisplay.text = inputDisplay.text?.replacingOccurrences(of: "-", with: "")
+            
         } else {
-            CurNum = "-" + CurNum
+            inputDisplay.text = "-" + inputDisplay.text!
         }
     }
     
-    
+    //Adds decimal point to input. will add 0. if no input is present
     @IBAction func dicimalPoint(_ sender: UIButton) {
-        if CurNum.contains(".") {
+        if (inputDisplay.text?.contains("."))! {
             return
         }
         
-        if CurNum.isEmpty {
-            CurNum += "0."
+        if (inputDisplay.text?.isEmpty)! {
+            inputDisplay.text = inputDisplay.text! + "0."
         }
         else {
-            CurNum += "."
+            inputDisplay.text = inputDisplay.text! + "."
         }
     }
     
-    
+    //clears both input and ouput
     @IBAction func clear(_ sender: UIButton) {
-        self.CurNum.removeAll()
-        self.NewNum?.removeAll()
-        outputDisplay.text = ""
         inputDisplay.text = ""
+        outputDisplay.text = ""
     }
     
-    
-    var inputTag = ["\u{00B0}F","\u{00B0}C","mi","km"]
-    
+    //Display outlets
     @IBOutlet weak var outputDisplay: UITextField!
     @IBOutlet weak var inputDisplay: UITextField!
     
@@ -115,15 +105,13 @@ class ConverterViewController: UIViewController {
     }
     //End conversion functions
     
-    
+    //convert button start
     @IBAction func convert(_ sender: Any) {
         let alert = UIAlertController(title: "Choose Converter", message: "", preferredStyle: UIAlertControllerStyle.actionSheet)
         alert.addAction(UIAlertAction(title: "fahrenheit to celcius", style: UIAlertActionStyle.default, handler: {
             (alertAction) -> Void in
             self.choice = 1
-            self.CurNum = ""
             self.inputDisplay.text = ""
-            self.dot = false
             self.outputDisplay.text = ""
         }))
         
@@ -131,16 +119,12 @@ class ConverterViewController: UIViewController {
             (alertAction) -> Void in
             self.choice = 2
             self.inputDisplay.text = ""
-            self.CurNum = ""
-            self.dot = false
             self.outputDisplay.text = ""
         }))
         alert.addAction(UIAlertAction(title: "miles to kilometers", style: UIAlertActionStyle.default, handler: {
             (alertAction) -> Void in
             self.choice = 3
             self.inputDisplay.text = ""
-            self.CurNum = ""
-            self.dot = false
             self.outputDisplay.text = ""
             
         }))
@@ -148,8 +132,6 @@ class ConverterViewController: UIViewController {
             (alertAction) -> Void in
             self.choice = 4
             self.inputDisplay.text = ""
-            self.CurNum = ""
-            self.dot = false
             self.outputDisplay.text = ""
         }))
         
@@ -157,8 +139,9 @@ class ConverterViewController: UIViewController {
         self.present(alert, animated: true, completion: nil)
         
     }
-    
+    //convert button end
 
+    
     /*
     // MARK: - Navigation
 
